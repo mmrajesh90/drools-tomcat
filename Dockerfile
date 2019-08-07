@@ -23,7 +23,7 @@ RUN cp Drools-essential-jars/setenv.sh ${CATALINA_HOME}/bin
 
 WORKDIR $CATALINA_HOME
 
-EXPOSE 8080
+EXPOSE 8082
 EXPOSE 8009
 
 CMD ["catalina.sh", "run"]
