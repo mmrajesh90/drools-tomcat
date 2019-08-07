@@ -13,8 +13,6 @@ RUN wget https://github.com/mmrajesh90/drools-tomcat/raw/master/Drools-essential
 RUN ls -la
 RUN pwd
 RUN unzip Drools-essential-jars.zip
-RUN cd Drools-essential-jars
-#RUN ls -la
 RUN cp Drools-essential-jars/*.jar ${CATALINA_HOME}/lib
 RUN cp Drools-essential-jars/btm-config.properties ${CATALINA_HOME}/conf
 RUN cp Drools-essential-jars/resources.properties ${CATALINA_HOME}/conf
