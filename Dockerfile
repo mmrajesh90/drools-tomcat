@@ -25,22 +25,24 @@ ENV PATH $PATH:$CATALINA_HOME/bin
 
 # INSTALL TOMCAT
 RUN wget -q http://apache.mirrors.tds.net/tomcat/tomcat-8/v8.5.39/bin/apache-tomcat-8.5.39.tar.gz && \
+  wget https://github.com/mmrajesh90/drools-tomcat/raw/master/Drools-essential-jars.zip && \
 #  wget -qO- https://www.apache.org/dist/tomcat/tomcat-${TOMCAT_MAJOR_VERSION}/v${TOMCAT_MINOR_VERSION}/bin/apache-tomcat-${TOMCAT_MINOR_VERSION}.tar.gz.md5 | md5sum -c - && \
   tar zxf apache-tomcat-8.5.39.tar.gz && \
   rm apache-tomcat-8.5.39.tar.gz && \
   mkdir /opt/tomcat && \
   mv apache-tomcat-8.5.39/* ${CATALINA_HOME}/
   
-COPY Drools-essential-jars Drools-essential-jars
+#COPY Drools-essential-jars Drools-essential-jars
 RUN ls -la
 RUN pwd
-#RUN unzip Drools-essential-jars.zip
+RUN unzip Drools-essential-jars.zip
+RUN cd Drools-essential-jars
 #RUN ls -la
-RUN mv Drools-essential-jars/*.jar ${CATALINA_HOME}/lib
-RUN mv Drools-essential-jars/btm-config.properties ${CATALINA_HOME}/conf
-RUN mv Drools-essential-jars/resources.properties ${CATALINA_HOME}/conf
-RUN mv Drools-essential-jars/tomcat-users.xml ${CATALINA_HOME}/conf
-RUN mv Drools-essential-jars/setenv.sh ${CATALINA_HOME}/bin
+RUN cp Drools-essential-jars/*.jar ${CATALINA_HOME}/lib
+RUN cp Drools-essential-jars/btm-config.properties ${CATALINA_HOME}/conf
+RUN cp Drools-essential-jars/resources.properties ${CATALINA_HOME}/conf
+RUN cp Drools-essential-jars/tomcat-users.xml ${CATALINA_HOME}/conf
+RUN cp Drools-essential-jars/setenv.sh ${CATALINA_HOME}/bin
 
 # Remove unneeded apps and files
 #RUN rm -rf ${CATALINA_HOME}/webapps/examples ${CATALINA_HOME}/webapps/docs ${CATALINA_HOME}/webapps/ROOT ${CATALINA_HOME}/webapps/host-manager ${CATALINA_HOME}/RELEASE-NOTES ${CATALINA_HOME}/RUNNING.txt ${CATALINA_HOME}/bin/*.bat  ${CATALINA_HOME}/bin/*.tar.gz
